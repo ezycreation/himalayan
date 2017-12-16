@@ -1,0 +1,68 @@
+{% extends '::admin.html.twig' %}
+
+{% block body %}
+    {% if app.session.flashBag.has('success') %}
+        <div class="alert alert-success">
+            {% for msg in app.session.flashBag.get('success') %}
+                {{ msg }}
+            {% endfor %}
+        </div>
+    {% endif %}
+    <div class="page-title">
+        <h2><span class="fa fa-info-circle"></span> Destination</h2>
+    </div>
+
+    {{ form_start(edit_form) }}
+    <div class="page-content-wrap">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <strong>Add or Edit Content</strong><br><br>
+                        <div>
+                            <h5 >
+                                {{ form_label(edit_form.title)}}
+                            </h5>
+                            <p>
+                                {{ form_widget(edit_form.title, {'attr':{'class': 'form-control'}}) }}
+                            </p>
+                            <h5 >
+                                {{ form_label(edit_form.description)}}
+                            </h5>
+                            <p>{{ form_widget(edit_form.description, {'attr':{'class': ''}}) }}</p>
+
+                            <h5>
+                                <i class="fa fa-picture-o"></i> {{ form_label(edit_form.imageurl)}}
+                            </h5>
+                            <p>{{ form_widget(edit_form.imageurl, {'attr':{'class': 'btn btn-default btn-file'}}) }}</p>
+                        </div>
+
+
+                        <br>
+                        <input type="submit" value="Update" class="btn btn-sm btn-success"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    {{ form_end(edit_form) }}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+
+                <div class="panel-body">
+                    {{ form_start(delete_form) }}
+                    <input type="submit" value="Delete"
+                           onclick="return confirm('Do you really want to delete this entry?')"
+                           class="btn btn-sm btn-danger"> <a href="{{ path('destination_index') }}"
+                                                             class="btn btn-sm btn-default"><i
+                                class="fa fa-reply fa-fw"></i> Back to the list</a>
+                    {{ form_end(delete_form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,30 @@
+@charset "utf-8";
+/* CSS Document 
+
+@media (max-width: 360px) {
+    body{font-size: 11px !important;}
+}
+
+@media (max-width: 768px) {
+    body{font-size: 12px;}
+}
+
+*/
+
+@media (max-width:360px) {
+	.logo{ padding:5px 0;}
+	.logo h1{ font-size:1em ; padding-top:0;}
+	.logo span{ font-size:0.8em; }
+	}
+
+@media (max-width:980px) {
+	.intro{
+	padding:20px;
+	background:#FFF;
+	}
+	.logo h1{ font-size:1.143em; padding-top:0;}
+
+	}
+
+.navbar-collapse .navbar-nav li{
+	}

@@ -1,0 +1,10 @@
+{% for var in detail%}
+    <div class="item">
+        <img src="{{ asset('images/destination/'~ var.image) }}" height="180" alt="sikkim">
+        <div class=" grow">
+            <strong> {{ var.title }}</strong>
+            <p>{{ (var.description|length > 100 ? var.description|slice(0, 100) ~ '&hellip;' : var.description)|raw  }}</p>
+            <span class="more"><a href="{{ path('destination',{'id':var.id}) }}">view more</a></span>
+        </div>
+    </div>
+{% endfor %}

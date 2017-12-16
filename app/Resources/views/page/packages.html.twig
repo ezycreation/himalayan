@@ -1,0 +1,67 @@
+{% extends '::base.html.twig' %}
+{% block title %}Packages - Himalayan Milestone Tours & Travels Sikkim{% endblock %}
+{% block body %}
+    <section id="page">
+        <div class="page-header">
+            <div class="container">
+                <div class="row">
+                        <div class="col-lg-12">
+                            <h1>Packages / {% for val in res|slice(0,1) %}<span>{{ val.location }}</span>{% endfor %}</h1>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                <div class="box">
+                <div class="col-lg-9">
+
+                       {% for val in res %}
+                           {% if val is defined %}
+                           <div class="col-lg-4">
+                               <div class="packages">
+                               <img src="{{ asset('images/uploads/'~ val.image) }}" align="left" height="160px" width="100%"/><br>
+                                <p>{{ val.title }}</p>
+                                   <span><a href="{{ path('tour_packages',{'id':val.id}) }}">view</a></span>
+                               </div>
+                           </div>
+                               {% endif %}
+                       {% else %}
+                           <div class="text-info">No Packages Found</div>
+                       {% endfor %}
+
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="right_box">
+                            <h4><span class="heading">Tour</span> Packages</h4>
+                            <ul>
+                                <li><a href="{{ path('packages',{'destination': 'Sikkim'}) }}">Sikkim Tour Package</a></li>
+                                <li><a href="{{ path('packages',{'destination': 'Darjeeling'}) }}">Darjeeling Tour Package</a></li>
+                                <li><a href="{{ path('packages',{'destination': 'Kalimpong'}) }}">Kalimpong Tour Package</a></li>
+                                <li><a href="{{ path('packages',{'destination': 'Nepal'}) }}">Nepal Tour Package</a></li>
+                                <li><a href="{{ path('packages',{'destination': 'Bhutan'}) }}">Bhutan Tour Package</a></li>
+                            </ul>
+                        </div>
+                        <div class="adventure right_box">
+                            <h4>Adventure</h4>
+                            <ul>
+                                {{ render(controller('AppBundle:Front:AdventureList')) }}
+                            </ul>
+                        </div>
+                        <div class="destination right_box">
+                            <h4>Destination</h4>
+                            <ul>
+                                {{ render(controller('AppBundle:Front:DestinationList')) }}
+                            </ul>
+                        </div>
+
+
+                    </div>
+                </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

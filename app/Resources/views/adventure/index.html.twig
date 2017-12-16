@@ -1,0 +1,57 @@
+{% extends '::admin.html.twig' %}
+
+{% block body %}
+    <div class="page-title">
+        <h2><span class="fa fa-info-circle"></span> Adventure</h2>
+    </div>
+    <!-- PAGE CONTENT WRAPPER -->
+    <div class="page-content-wrap">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <strong>Add or Edit Content</strong><br><br>
+                        <div>
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for adventure in adventures %}
+                                    <tr>
+                                        <td><a href="{{ path('adventure_show', { 'id': adventure.id }) }}">{{ adventure.id }}</a></td>
+                                        <td>{{ adventure.title }}</td>
+                                        <td>{{ (adventure.description|length > 525 ? adventure.description|slice(0, 525) ~ '&hellip;' : adventure.description)|raw  }}</td>
+
+                                        <td width="15%">
+                                            <table>
+                                                <tr>
+                                                    <td width="80px">
+                                                        <a href="{{ path('adventure_show', { 'id': adventure.id }) }}" class="btn btn-sm btn-success"><i class="fa fa-eye"></i> show</a>
+                                                    </td>
+                                                    <td width="80px">
+                                                        <a href="{{ path('adventure_edit', { 'id': adventure.id }) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i> edit </a>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+<br>
+                        </div>
+                        <a href="{{ path('adventure_new') }}" class="btn btn-sm btn-default"><i class="fa fa-pencil"></i>Create New Adventure</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

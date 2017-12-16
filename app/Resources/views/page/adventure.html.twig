@@ -1,0 +1,51 @@
+{% extends '::base.html.twig' %}
+{% block title %}{{ title }} - Himalayan Milestone Tours & Travels Sikkim{% endblock %}
+{% block body %}
+    <section id="page">
+        <div class="page-header">
+            <div class="container">
+                <div class="row">
+                        <div class="col-lg-12">
+                            <h1>Adventure / <span>{{ title }}</span></h1>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                <div class="box">
+                <div class="col-lg-9">
+                    <img src="{{ asset('images/adventure/'~ image) }}" width="250px" height="230px" align="left" style="margin-right: 20px"/>
+                        {{ description|raw }}
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="adventure right_box">
+                            <h4>Adventure</h4>
+                            <ul>
+                                {{ render(controller('AppBundle:Front:AdventureList')) }}
+                            </ul>
+                        </div>
+                        <div class="adventure right_box">
+                            <h4>Destination</h4>
+                            <ul>
+                                {{ render(controller('AppBundle:Front:DestinationList')) }}
+                            </ul>
+                        </div>
+                        <div class="right_box">
+                            <h4><span class="heading">Tour</span> Packages</h4>
+                            <ul>
+                                <li><a href="{{ path('packages',{'destination': 'Sikkim'}) }}">Sikkim Tour Package</a></li>
+                                <li><a href="{{ path('packages',{'destination': 'Darjeeling'}) }}">Darjeeling Tour Package</a></li>
+                                <li><a href="{{ path('packages',{'destination': 'Kalimpong'}) }}">Kalimpong Tour Package</a></li>
+                                <li><a href="{{ path('packages',{'destination': 'Nepal'}) }}">Nepal Tour Package</a></li>
+                                <li><a href="{{ path('packages',{'destination': 'Bhutan'}) }}">Bhutan Tour Package</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

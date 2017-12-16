@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" class="body-full-height">
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Dashboard | Yangzeela Tours & Travels {% endblock %}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('dashboard/css/theme-default.css') }}">
+
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+<div class="login-container">
+{% block body %}
+        {% if app.request.hasPreviousSession %}
+            {% for type, messages in app.session.flashbag.all() %}
+                {% for message in messages %}
+                    <div class="flash-{{ type }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+
+        <div>
+            {% block fos_user_content %}
+            {% endblock fos_user_content %}
+        </div>
+{% endblock %}
+</div>
+</body>
+</html>

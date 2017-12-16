@@ -1,0 +1,41 @@
+{% extends '::admin.html.twig' %}
+
+{% block body %}
+    <div class="page-title">
+        <h2><span class="fa fa-info-circle"></span> Contact Details</h2>
+    </div>
+
+    {{ form_start(form) }}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <strong>Add or Edit Content</strong><br><br>
+                    <div>
+                        <h5 >
+                            {{ form_label(form.phone)}}
+                        </h5>
+                        <p>
+                            {{ form_widget(form.phone, {'attr':{'class': 'form-control'}}) }}
+                        </p>
+                        <h5 >
+                            {{ form_label(form.email)}}
+                        </h5>
+                        <p>{{ form_widget(form.email, {'attr':{'class': 'form-control'}}) }}</p>
+                        <h5>
+                            {{ form_label(form.address)}}
+                        </h5>
+                        <p>
+                            {{ form_widget(form.address, {'attr':{'class': 'form-control','rows':'5'}}) }}
+                        </p>
+                    </div>
+                    {#<textarea class="summernote">#}
+                    {#</textarea>#}
+                    <br>
+                    <input type="submit" value="Create" class="btn btn-sm btn-success"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

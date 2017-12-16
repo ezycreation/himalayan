@@ -1,0 +1,124 @@
+{% extends '::base.html.twig' %}
+{% block title %}Contact us - Himalayan Milestone Tours & Travels Sikkim{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/datepicker.css') }}">
+{% endblock %}
+{% block body %}
+    <section id="page">
+        <div class="page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>Contact / <span>Form</span></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="box">
+                        <div class="col-lg-9">
+                            <div class="content">
+                                {% if app.session.flashBag.has('success') %}
+                                    <div class="alert alert-success">
+                                        {% for msg in app.session.flashBag.get('success') %}
+                                            {{ msg }}
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                                {{ form_start(form,{ 'attr': {'class': 'form'} }) }}
+                                <div class="">
+                                    <div class="form-group">
+                                        <div class="col-lg-2">Name</div>
+                                        <div class="col-lg-8">
+                                            {{ form_widget(form.name, {'attr':{'class': 'form-control'}}) }}
+                                            {{ form_errors(form.name) }}
+                                        </div>
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                    <div class="form-group">
+                                        <div class="col-lg-2">Email</div>
+                                        <div class="col-lg-8">
+                                            {{ form_widget(form.email, {'attr':{'class': 'form-control'}}) }}
+                                            <span style="color:red;">{{ form_errors(form.email) }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="form-group">
+                                        <div class="col-lg-2">Phone</div>
+                                        <div class="col-lg-8">
+                                            {{ form_widget(form.phone, {'attr':{'class': 'form-control'}}) }}
+                                            <span style="color:red;">{{ form_errors(form.phone) }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="form-group">
+                                        <div class="col-lg-2">Address</div>
+                                        <div class="col-lg-8">
+                                            {{ form_widget(form.address, {'attr':{'class': 'form-control'}}) }}
+                                            {{ form_errors(form.address) }}
+                                        </div>
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                    <div class="form-group">
+                                        <div class="col-lg-2">Enquiry</div>
+                                        <div class="col-lg-8">
+                                            {{ form_widget(form.message, {'attr':{'class': 'form-control textarea'}}) }}
+                                            {{ form_errors(form.message) }}
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+
+                                <div style="display:none">
+                                    {{ form_rest(form) }}
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-3 col-sm-12  col-lg-8 col-lg-offset-4">
+                                        <input class="submit" type="submit" value=" SEND " name="B1">
+                                    </div>
+                                </div>
+                                {{ form_end(form) }}
+
+
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="destination right_box">
+                                <h4>Destination</h4>
+                                <ul>
+                                    {{ render(controller('AppBundle:Front:DestinationList')) }}
+                                </ul>
+                            </div>
+                            <div class="adventure right_box">
+                                <h4>Adventure</h4>
+                                <ul>
+                                    {{ render(controller('AppBundle:Front:AdventureList')) }}
+                                </ul>
+                            </div>
+                            <div class="right_box">
+                                <h4><span class="heading">Tour</span> Packages</h4>
+                                <ul>
+                                    <li><a href="{{ path('packages',{'destination': 'Sikkim'}) }}">Sikkim Tour Package</a></li>
+                                    <li><a href="{{ path('packages',{'destination': 'Darjeeling'}) }}">Darjeeling Tour Package</a></li>
+                                    <li><a href="{{ path('packages',{'destination': 'Kalimpong'}) }}">Kalimpong Tour Package</a></li>
+                                    <li><a href="{{ path('packages',{'destination': 'Nepal'}) }}">Nepal Tour Package</a></li>
+                                    <li><a href="{{ path('packages',{'destination': 'Bhutan'}) }}">Bhutan Tour Package</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{%  endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/bootstrap-datepicker.js') }}"></script>
+{% endblock %}

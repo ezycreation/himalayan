@@ -1,0 +1,47 @@
+{% extends '::admin.html.twig' %}
+
+{% block body %}
+    <div class="page-title">
+        <h2><span class="fa fa-info-circle"></span> Gallery</h2>
+    </div>
+    <!-- PAGE CONTENT WRAPPER -->
+    <div class="page-content-wrap">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <strong>Add or Edit Content</strong><br><br>
+                        <div>
+                            <table class="table table-striped">
+                                <tbody>
+                                {% for gallery in galleries %}
+                                    <tr>
+                                        {#<td width="4%"><a href="{{ path('gallery_show', { 'id': gallery.id }) }}">{{ gallery.id }}</a></td>#}
+                                        <td>{{ gallery.titleName }}</td>
+                                        <td width="15%">
+                                            <table>
+                                                <tr>
+                                                    <td width="80px">
+                                                        <a href="{{ path('gallery_show', { 'id': gallery.id }) }}" class="btn btn-sm btn-success"><i class="fa fa-eye"></i> show</a>
+                                                    </td>
+                                                    <td width="80px">
+                                                        <a href="{{ path('gallery_edit', { 'id': gallery.id }) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i> edit </a>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            <br>
+                        </div>
+                        <a href="{{ path('gallery_new') }}" class="btn btn-sm btn-default"><i class="fa fa-pencil"></i>Create New Gallery</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

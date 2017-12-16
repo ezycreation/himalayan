@@ -1,0 +1,39 @@
+{% extends '::admin.html.twig' %}
+
+{% block body %}
+
+    <div class="page-title">
+        <h2><span class="fa fa-info-circle"></span> Location</h2>
+    </div>
+
+    {{ form_start(form) }}
+    <!-- PAGE CONTENT WRAPPER -->
+    <div class="page-content-wrap">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <strong>Add or Edit Content</strong><br><br>
+                        <div>
+                            <h5 >
+                                {{ form_label(form.destinationName)}}
+                            </h5>
+                            <p>
+                                {{ form_widget(form.destinationName, {'attr':{'class': 'form-control'}}) }}
+                            </p>
+                        </div>
+                        {#<textarea class="summernote">#}
+                        {#</textarea>#}
+                        <br>
+                        <input type="submit" value="Create" class="btn btn-sm btn-success"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    {{ form_end(form) }}
+
+{% endblock %}

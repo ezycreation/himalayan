@@ -1,0 +1,45 @@
+{% extends '::admin.html.twig' %}
+
+{% block body %}
+    <div class="page-title">
+        <h2><span class="fa fa-info-circle"></span> Adventure: {{ gallery.titlename }}</h2>
+    </div>
+    <div class="page-content-wrap">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div>
+                            <table>
+                                <tbody>
+                                <tr>
+                                    <th>Id</th>
+                                    <td>{{ gallery.id }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Titlename</th>
+                                    <td>{{ gallery.titleName }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <br>
+                        </div>
+                        <table>
+                            <tr>
+                                <td>
+                                    <a href="{{ path('gallery_index') }}" class="btn btn-sm btn-default"><i class="fa fa-mail-reply"></i> Back to the list</a>
+                                </td>
+                                <td>
+                                    <a href="{{ path('gallery_edit', { 'id': gallery.id }) }}" class="btn btn-sm btn-default"><i class="fa fa-edit"></i> Edit</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

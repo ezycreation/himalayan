@@ -1,0 +1,56 @@
+{% extends '::admin.html.twig' %}
+
+{% block body %}
+    <div class="page-title">
+        <h2><span class="fa fa-info-circle"></span> Destination</h2>
+    </div>
+    <!-- PAGE CONTENT WRAPPER -->
+    <div class="page-content-wrap">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <strong>Add or Edit Content</strong><br><br>
+                        <div>
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for destination in destinations %}
+                                    <tr>
+                                        <td><a href="{{ path('destination_show', { 'id': destination.id }) }}">{{ destination.id }}</a></td>
+                                        <td>{{ destination.title }}</td>
+                                        <td>{{ (destination.description|length > 525 ? destination.description|slice(0, 525) ~ '&hellip;' : destination.description)|raw  }}</td>
+                                        <td width="15%">
+                                            <table>
+                                                <tr>
+                                                    <td width="80px">
+                                                        <a href="{{ path('destination_show', { 'id': destination.id }) }}" class="btn btn-sm btn-success"><i class="fa fa-eye"></i> show</a>
+                                                    </td>
+                                                    <td width="80px">
+                                                        <a href="{{ path('destination_edit', { 'id': destination.id }) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i> edit </a>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            <br>
+                        </div>
+                        <a href="{{ path('destination_new') }}" class="btn btn-sm btn-default"><i class="fa fa-pencil"></i>Create New Destination</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

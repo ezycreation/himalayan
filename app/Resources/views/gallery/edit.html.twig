@@ -1,0 +1,175 @@
+{% extends '::admin.html.twig' %}
+
+{% block body %}
+    {% if app.session.flashBag.has('success') %}
+        <div class="alert alert-success">
+            {% for msg in app.session.flashBag.get('success') %}
+                {{ msg }}
+            {% endfor %}
+        </div>
+    {% endif %}
+    <div class="page-title">
+        <h2><span class="fa fa-info-circle"></span> Destination</h2>
+    </div>
+
+    {{ form_start(edit_form) }}
+    <div class="page-content-wrap">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <strong>Add or Edit Content</strong><br><br>
+                        <div id="gallery" class="form-wrapper"  data-prototype="{% filter escape %}{% include 'gallery/Prototype/image.html.twig' with {'val': edit_form.image.vars.prototype} %}{% endfilter %}" cellspacing="15">
+                            <div>
+                                <table width="100%">
+                                    <tr>
+                                        <td width="100px">  <h6>
+                                                {{ form_label(edit_form.titleName)}}
+                                            </h6></td>
+                                        <td>            <p>
+                                                {{ form_widget(edit_form.titleName, {'attr':{'class': 'form-control'}}) }}
+                                            </p></td>
+                                    </tr>
+                                </table>
+
+
+                            </div>
+                            <p>&nbsp;</p>
+                            <div>
+                                <div class="gallery">
+                                    <ul class="clearfix tags">
+                                        {% for i in edit_form.image %}
+                                            <li style="font-size:12px; float:left; border:1px solid #dbdbdb; padding:10px; margin:10px 10px 10px 0px; border-radius:5px; list-style: none">
+                                                <img src="{{ asset('images/uploads/gallery/'~ i.vars.data.path) }}" height="50" width="50"/>
+                                                <br>
+                                                <p style="display:none;">{{ form_widget(i.file) }}</p>
+                                                {#<a href="#" class="close">Close Block</a>#}
+                                                {#{{ form_label(i.file) }}#}
+                                                {{ form_errors(i.file) }}
+
+
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                    <ul class="add-img"></ul>
+                                    <p>&nbsp</p>
+                                    <button name="gallery" class="add_block black x-small btn btn-sm btn-default"  id="1"> <i class="fa  fa-plus-circle"></i> Add image</button>
+                                    <p>&nbsp;</p>
+                                </div>
+                            </div>
+                            <div>
+                                <p >
+                                    {{ form(edit_form) }}
+                                </p>
+                            </div>
+                            {#<tr>#}
+                            {#<td>{{ form(form) }}</td>#}
+                            {#</tr>#}
+
+                        </div>
+
+
+                        <br>
+                        <input type="submit" value="Update" class="btn btn-sm btn-success"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    {{ form_end(edit_form) }}
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+
+                <div class="panel-body">
+                    {{ form_start(delete_form) }}
+                    <input type="submit" value="Delete"
+                           onclick="return confirm('Do you really want to delete this entry?')"
+                           class="btn btn-sm btn-danger"> <a href="{{ path('gallery_index') }}"
+                                                             class="btn btn-sm btn-default"><i
+                                class="fa fa-reply fa-fw"></i> Back to the list</a>
+                    {{ form_end(delete_form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
+    <script>
+        function addBlockForm($collectionHolder, grid, that) {
+            // Get the data-prototype explained earlier
+            var prototype = $collectionHolder.data('prototype');
+            // get the new index
+            var index = $collectionHolder.data('index');
+            console.log($collectionHolder);
+            // Replace '__name__' in the prototype's HTML to
+            // instead be a number based on how many items we have
+            var newForm = prototype.replace(/__name__/g, index);
+            newForm = newForm.replace(/__val__/g, index+1);
+            // increase the index with one for the next item
+            $collectionHolder.data('index', index + 1);
+
+            switch(grid){
+                case '1' : that.parent().find('.add-img').append(newForm);
+                    removeBlock(grid);
+                    break;
+                    //
+                    //default : // Display the form in the page in an li, before the "Add a tag" link li
+                    //    var $newBlock = $('<div class="wrapper-inner float"></div>').append(newForm);
+                    //    $collectionHolder.append($newBlock);
+            }
+        }
+
+        function removeBlock(grid){
+            switch(grid) {
+                case '1' :
+                    $('.remove_block').on('click', function (e) {
+                        e.preventDefault();
+                        $(this).parent().remove();
+                    });
+                    break;
+            }
+        }
+
+        function addTagFormDeleteLink($tagFormLi) {
+            var $removeFormA = $('<a href="#" class="remove_block"><i class="fa fa-times"></i> Remove</a>');
+            $tagFormLi.append($removeFormA);
+
+            $removeFormA.on('click', function(e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+
+                // remove the li for the tag form
+                $tagFormLi.remove();
+            });
+        }
+
+        $(document).ready(function() {
+            var collectionHolder,
+                    grid ;
+
+            // add a delete link to all of the existing tag form li elements
+            $('.form-wrapper').find('.gallery li').each(function() {
+                addTagFormDeleteLink($(this));
+            });
+
+            $('.add_block').on('click', function(e) {
+                e.preventDefault();
+                // Get the fieldset that holds the collection of blocks
+                collectionHolder = $('#' + this.name);
+
+                grid = $(this).attr('id');
+                // count the current form inputs we have (e.g. 2), use that as the new
+                // index when inserting a new item (e.g. 2)
+
+                collectionHolder.data('index', collectionHolder.find('.gallery ul li').length);
+                // add a new tag form (see next code block)
+                addBlockForm(collectionHolder, grid, $(this));
+            });
+
+        });
+    </script>
+{% endblock %}

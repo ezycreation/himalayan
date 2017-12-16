@@ -1,0 +1,27 @@
+footer{
+  font-size: 13px;
+  font-weight: 300;
+  background:#1a1a1a;
+  padding: 50px 0 0  0;
+  color: #cccccc;
+  line-height: 24px;
+
+  h5{
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  .footer-bottom{
+    margin-top: 50px;
+    padding: 10px 0;
+    background: #171717;
+  }
+
+  a{
+    color:#cccccc;
+    &:hover{
+      color: #FFF;
+      text-decoration: none;
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{% extends '::admin.html.twig' %}
+
+{% block body %}
+    <div class="page-title">
+        <h2><span class="fa fa-info-circle"></span> Adventure: {{ adventure.title }}</h2>
+    </div>
+    <div class="page-content-wrap">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div>
+                            <table>
+                                <tbody>
+
+                                <tr>
+                                    <td>{{ adventure.description|raw }}</td>
+                                </tr>
+                                <tr>
+                                    <td><img src="{{ asset('images/adventure/'~ adventure.imageurl) }}" width="150px" height="130px"/></td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                            <br>
+                        </div>
+                        <table>
+                            <tr>
+                            <td>
+                                <a href="{{ path('adventure_index') }}" class="btn btn-sm btn-default"><i class="fa fa-mail-reply"></i> Back to the list</a>
+                            </td>
+                            <td>
+                                <a href="{{ path('adventure_edit', { 'id': adventure.id }) }}" class="btn btn-sm btn-default"><i class="fa fa-edit"></i> Edit</a>
+                            </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+.no-gutter{
+  padding: 0;
+  margin: 0;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 0.8em;
+  padding: 0;
+}
+
+.more{
+  font-size: 11px;
+  font-weight: bold;
+  a{
+    color: #bb2200;
+    //padding: 5px;
+    text-decoration:none;
+    //border-top: 3px solid #f1f1f1;
+    //border-radius: 5px;
+    &:hover{
+      color: #111;
+    }
+  }
+
+}

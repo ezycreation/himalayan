@@ -1,0 +1,43 @@
+{% extends '::admin.html.twig' %}
+
+{% block body %}
+    <h1>Contactdetails list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for contactDetail in contactDetails %}
+            <tr>
+                <td><a href="{{ path('contactdetails_show', { 'id': contactDetail.id }) }}">{{ contactDetail.id }}</a></td>
+                <td>{{ contactDetail.phone }}</td>
+                <td>{{ contactDetail.email }}</td>
+                <td>{{ contactDetail.address }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('contactdetails_show', { 'id': contactDetail.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('contactdetails_edit', { 'id': contactDetail.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('contactdetails_new') }}">Create a new contactDetail</a>
+        </li>
+    </ul>
+{% endblock %}

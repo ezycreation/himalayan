@@ -1,0 +1,56 @@
+{% extends '::admin.html.twig' %}
+
+{% block body %}
+    <div class="page-title">
+        <h2><span class="fa fa-info-circle"></span> Pages</h2>
+    </div>
+    <!-- PAGE CONTENT WRAPPER -->
+    <div class="page-content-wrap">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <strong>Add or Edit Content</strong><br><br>
+                        <div>
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for page in pages %}
+                                    <tr>
+                                        <td><a href="{{ path('pages_show', { 'id': page.id }) }}">{{ page.id }}</a></td>
+                                        <td>{{ page.title }}</td>
+                                        <td>{{ (page.description|length > 525 ? page.description|slice(0, 525) ~ '&hellip;' : page.description)|raw  }}</td>
+                                        <td width="15%">
+                                            <table>
+                                                <tr>
+                                                    <td width="80px">
+                                                        <a href="{{ path('pages_show', { 'id': page.id }) }}" class="btn btn-sm btn-success"><i class="fa fa-eye"></i> show</a>
+                                                    </td>
+                                                    <td width="80px">
+                                                        <a href="{{ path('pages_edit', { 'id': page.id }) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i> edit </a>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            <br>
+                        </div>
+                        <a href="{{ path('pages_new') }}" class="btn btn-sm btn-default"><i class="fa fa-pencil"></i>Create New Page</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

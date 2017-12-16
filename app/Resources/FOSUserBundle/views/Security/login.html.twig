@@ -1,0 +1,41 @@
+
+{% extends "FOSUserBundle::layout.html.twig"  %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+{% block fos_user_content %}
+
+        {% if error %}
+            <div style="color:#F30D0D;">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+        <div class="login-box animated fadeInDown">
+            <div class="login-logo"></div>
+            <div class="login-body">
+                <div class="login-title"><strong>Welcome</strong>, Please login</div>
+                <form id="loginform" class="form-horizontal" role="form" action="{{ path("fos_user_security_check") }}" method="post">
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input id="login-username" type="text" class="form-control" name="_username" value="{{ last_username }}" required="required" placeholder="username or email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input id="login-password" type="password" class="form-control" name="_password" required="required" placeholder="password">
+                        </div>
+                    </div>
+                    <div class="form-group">{#
+                        <div class="col-md-6">
+                            <a href="#" class="btn btn-link btn-block">Forgot your password?</a>
+                        </div>#}
+                        <div class="col-md-6">
+                            <input class="btn btn-success btn-block" type="submit" id="_submit" name="_submit" value="{{ 'Login'|trans }}" />
+
+                            {#<a class="btn btn-success btn-block" href="{{ path('dashboard') }}">Log In</a>#}
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+{% endblock fos_user_content %}

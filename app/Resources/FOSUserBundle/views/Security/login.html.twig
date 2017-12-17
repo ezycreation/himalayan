@@ -8,7 +8,7 @@
             <div style="color:#F30D0D;">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
         <div class="login-box animated fadeInDown">
-            <div class="login-logo"></div>
+            {#<div class="login-logo"></div>#}
             <div class="login-body">
                 <div class="login-title"><strong>Welcome</strong>, Please login</div>
                 <form id="loginform" class="form-horizontal" role="form" action="{{ path("fos_user_security_check") }}" method="post">

@@ -68,10 +68,11 @@ class ContactController extends Controller
 
         $mailer = \Swift_Mailer::newInstance($transport);
 
-        $message = \Swift_Message::newInstance("Yangzeela Tours & Travels Enquiry")
+        $message = \Swift_Message::newInstance("Himalayan Milestone Tours & Travels Enquiry")
             ->setFrom(array($data["email"] => $data["name"]))
             ->setTo(array(
-                'ezycreation@gmail.com' => 'ezycreation'
+                'ezycreation@gmail.com' => 'ezycreation',
+                'himalayanmilestonesikkim' => 'himalayan'
             ))
             ->setBody(
                 "Name: ".$data["name"].
